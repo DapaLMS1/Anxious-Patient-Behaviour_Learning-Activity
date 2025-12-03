@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dental Assistant Training: Anxious Patients</title>
+    <!-- Tailwind CSS for layout -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Custom Brand Colors */
+        :root {
+            --brand-primary: #532A8C;   /* Deep Purple */
+            --brand-secondary: #9D8ABB; /* Muted Purple */
+            --brand-accent: #7ABF49;    /* Bright Green */
+            --brand-accent-soft: #96BF78; /* Soft Green */
+            --brand-bg: #F2F2F2;        /* Light Grey */
+            --brand-light: #C3ACE8;     /* Lavender */
+        }
+
+        body {
+            background-color: var(--brand-bg);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .text-primary { color: var(--brand-primary); }
+        .bg-primary { background-color: var(--brand-primary); }
+        .bg-accent { background-color: var(--brand-accent); }
+        .border-primary { border-color: var(--brand-primary); }
+        
+        .card {
+            border-top: 5px solid var(--brand-primary);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .btn-tip {
+            background-color: var(--brand-secondary);
+            color: white;
+            transition: all 0.3s;
+        }
+        .btn-tip:hover {
+            background-color: var(--brand-primary);
+        }
+
+        .btn-response {
+            background-color: var(--brand-accent);
+            color: white;
+            transition: all 0.3s;
+        }
+        .btn-response:hover {
+            background-color: var(--brand-accent-soft);
+        }
+
+        .bubble {
+            position: relative;
+            background: #fff;
+            border-radius: .4em;
+            border: 2px solid var(--brand-light);
+        }
+        .bubble:after {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            width: 0;
+            height: 0;
+            border: 10px solid transparent;
+            border-right-color: var(--brand-light);
+            border-left: 0;
+            margin-top: -10px;
+            margin-left: -20px;
+        }
+        
+        /* Animation for revealing content */
+        .reveal-content {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.5s ease-out, opacity 0.5s ease-in;
+        }
+        .reveal-content.active {
+            max-height: 500px; /* Arbitrary large height */
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-12">
+
+    <!-- Header -->
+    <header class="bg-primary text-white shadow-lg">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex items-center space-x-3">
+                <i data-lucide="smile-plus" class="w-8 h-8 text-white"></i>
+                <div>
+                    <h1 class="text-2xl font-bold">Anxious Patient Scenarios</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Intro -->
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-accent">
+            <h2 class="text-xl font-semibold text-primary mb-2">Instructions</h2>
+            <p class="text-gray-600">
+                Watch the video and consider how you would respond in each of the scenarios. If you are not sure, try the 
+                <span class="font-bold text-purple-700">'Get a tip'</span>. 
+                Once you have considered how you respond, 
+                <span class="font-bold text-green-600">Reveal the Response</span>.
+            </p>
+        </div>
+    </div>
+
+    <!-- Scenarios Grid -->
+    <div class="container mx-auto px-4 grid md:grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl">
+
+        <!-- Scenario 1 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden card flex flex-col">
+            <div class="p-6 flex-grow">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="bg-purple-100 text-purple-800 text-xs font-semibold px-2.5 py-0.5 rounded border border-purple-200">Scenario 1</span>
+                    <!-- Changed icon color to brand primary -->
+                    <i data-lucide="siren" class="text-primary"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Panic & Sensory Overload</h3>
+                <p class="text-gray-600 text-sm mb-4">
+                    <strong>Patient:</strong> Male, 30s.<br>
+                    <strong>Behavior:</strong> Hand on forehead, rapid speech, looks trapped.<br>
+                    <strong>Quote:</strong> "I don't think I can do this right now. I'm feeling incredibly anxious about the drill."
+                </p>
+
+                <!-- Step 1: Tip -->
+                <div class="mb-4">
+                    <button onclick="toggleSection('tip1')" class="btn-tip w-full py-2 rounded-lg font-medium flex items-center justify-center gap-2">
+                        <i data-lucide="lightbulb" class="w-4 h-4"></i> Get a Tip
+                    </button>
+                    <div id="tip1" class="reveal-content mt-3">
+                        <div class="bg-yellow-50 p-3 rounded-lg border border-yellow-200 text-sm text-gray-700">
+                            <strong>Establish Control:</strong> Anxiety often comes from feeling trapped. Give the patient a physical "stop signal" so they know they are in charge of the pace.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Response -->
+                <div>
+                    <button onclick="toggleSection('resp1')" class="btn-response w-full py-2 rounded-lg font-medium flex items-center justify-center gap-2">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i> Response
+                    </button>
+                    <div id="resp1" class="reveal-content mt-3">
+                        <div class="bubble p-4 text-gray-800 italic text-sm">
+                            "I can see that you are feeling really overwhelmed right now. That is okay. We are going to put you in control today.<br><br>
+                            If you raise your left hand like this [demonstrate], we will stop immediately. We won't proceed until you are ready. Let's take a moment to breathe first."
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scenario 2 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden card flex flex-col">
+            <div class="p-6 flex-grow">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="bg-purple-100 text-purple-800 text-xs font-semibold px-2.5 py-0.5 rounded border border-purple-200">Scenario 2</span>
+                    <!-- Changed icon color to brand primary -->
+                    <i data-lucide="calendar-off" class="text-primary"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Avoidance & Rescheduling</h3>
+                <p class="text-gray-600 text-sm mb-4">
+                    <strong>Patient:</strong> Female, 20s.<br>
+                    <strong>Behavior:</strong> Clutching napkin, pleading tone.<br>
+                    <strong>Quote:</strong> "I really don't want the needle... Maybe we can just reschedule?"
+                </p>
+
+                <!-- Step 1: Tip -->
+                <div class="mb-4">
+                    <button onclick="toggleSection('tip2')" class="btn-tip w-full py-2 rounded-lg font-medium flex items-center justify-center gap-2">
+                        <i data-lucide="lightbulb" class="w-4 h-4"></i> Get a Tip
+                    </button>
+                    <div id="tip2" class="reveal-content mt-3">
+                        <div class="bg-yellow-50 p-3 rounded-lg border border-yellow-200 text-sm text-gray-700">
+                            <strong>Validation vs. Avoidance:</strong> Validate her feelings so she feels heard, but kindly remind her that rescheduling often leads to more pain later. Focus on immediate comfort (numbing gel).
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Response -->
+                <div>
+                    <button onclick="toggleSection('resp2')" class="btn-response w-full py-2 rounded-lg font-medium flex items-center justify-center gap-2">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i> Response
+                    </button>
+                    <div id="resp2" class="reveal-content mt-3">
+                        <div class="bubble p-4 text-gray-800 italic text-sm">
+                            "I hear you, and it is completely normal to feel nervous about the needle. <br><br>
+                            However, if we delay this, your toothache is likely to get much worse. We can apply some extra numbing gel first so you won't feel the pinch at all. Let's just try the gel and see how you feel?"
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scenario 3 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden card flex flex-col">
+            <div class="p-6 flex-grow">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="bg-purple-100 text-purple-800 text-xs font-semibold px-2.5 py-0.5 rounded border border-purple-200">Scenario 3</span>
+                    <!-- Changed icon color to brand primary -->
+                    <i data-lucide="help-circle" class="text-primary"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Doubt & Recovery</h3>
+                <p class="text-gray-600 text-sm mb-4">
+                    <strong>Patient:</strong> Male, 60s.<br>
+                    <strong>Behavior:</strong> Skeptical, defensive body language.<br>
+                    <strong>Quote:</strong> "Are you sure this is the only option? I'm really not keen on the recovery time."
+                </p>
+
+                <!-- Step 1: Tip -->
+                <div class="mb-4">
+                    <button onclick="toggleSection('tip3')" class="btn-tip w-full py-2 rounded-lg font-medium flex items-center justify-center gap-2">
+                        <i data-lucide="lightbulb" class="w-4 h-4"></i> Get a Tip
+                    </button>
+                    <div id="tip3" class="reveal-content mt-3">
+                        <div class="bg-yellow-50 p-3 rounded-lg border border-yellow-200 text-sm text-gray-700">
+                            <strong>Scope of Practice:</strong> Acknowledge his concern about recovery. Do not try to defend the diagnosis yourself. Bring the dentist back to explain the "Why" to build trust.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Response -->
+                <div>
+                    <button onclick="toggleSection('resp3')" class="btn-response w-full py-2 rounded-lg font-medium flex items-center justify-center gap-2">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i> Response
+                    </button>
+                    <div id="resp3" class="reveal-content mt-3">
+                        <div class="bubble p-4 text-gray-800 italic text-sm">
+                            "I completely understand why you'd want to minimize recovery time. Nobody wants to be out of action.<br><br>
+                            Since you have questions about other options, the best thing is for me to ask the Doctor to pop back in. They can explain exactly why they recommended this specific plan for your long-term health."
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center mt-12 text-gray-500 text-sm">
+        <p>© Dental Assistants Professional Assoc. Training Module</p>
+    </footer>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        function toggleSection(id) {
+            const element = document.getElementById(id);
+            element.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
